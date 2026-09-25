@@ -15,6 +15,8 @@ Una vez solucionada esta parte, el trabajo comenzó a ser mucho más fluido. Tam
 
 Al comenzar con el ejercicio fui escribiendo el código paso a paso para entender qué hacía cada instrucción. Utilicé la IA de forma moderada y educativa, principalmente para resolver dudas, entender errores y recibir explicaciones cortas, sin saltarme pasos ni sustituir mi propio proceso de aprendizaje. Al principio trabajaba con líneas y bloques pequeños. Después de repetir y practicar muchas veces, fui comprendiendo mejor las instrucciones y pude trabajar progresivamente.
 
+*Entiendo que, como recomendación y buena práctica, el código debería quedar limpio y simple. En ese sentido, sí limpié 75 códigos que podían interrumpir el buen funcionamiento. Sin embargo, el resto de las pruebas y errores los he dejado como rastro visible del proceso de aprendizaje.*
+
 ---
 
 ### 🔎 Exploración inicial de los datos
