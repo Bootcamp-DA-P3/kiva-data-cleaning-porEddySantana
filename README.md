@@ -1,87 +1,80 @@
 # Procesamiento y limpieza de datos con Python
+## Mi proceso de trabajo
 
-## 📝 Descripción del proyecto
+---
 
-Este proyecto se centrará en aplicar las mejores prácticas de limpieza y preparación de datos utilizando Python en un entorno de notebook (Jupyter/Google Colab). El objetivo es transformar los datos brutos del dataset de Kiva Crowdfunding en un conjunto de datos estructurado, consistente y listo para análisis o modelado predictivo.
+Este proyecto consiste en explorar, limpiar, transformar y validar un dataset de Kiva Crowdfunding utilizando Python y pandas.
 
-El proyecto sigue una metodología reproducible que abarca tres etapas fundamentales: **Importación y exploración inicial**, **Diagnóstico y limpieza de datos**, y **Validación y exportación del dataset limpio**. Se enfatiza la documentación clara de cada decisión tomada durante el proceso de limpieza, garantizando que cualquier miembro del equipo pueda replicar el trabajo y comprender el razonamiento detrás de cada transformación aplicada.
+---
 
-## 🎯 Objetivos concretos
+La parte que más me costó al principio fue preparar el entorno de trabajo. Tuve que familiarizarme con Python, pandas, VS Code y GitHub, además de solucionar algunos problemas de actualizaciones, instalación de pandas y sincronización. También llegué a crear la carpeta del proyecto varias veces por error y, en un momento, VS Code se bloqueó y tuve que reiniciarlo.
 
-- Entender la estructura y calidad raw del dataset.
-- Corregir tipos, fechas y valores inconsistentes.
-- Eliminar/gestionar duplicados y valores faltantes de forma documentada.
-- Crear un artefacto final (CSV/Parquet) y un notebook reproducible con comentarios y celdas explicativas.
+Una vez solucionada esta parte, el trabajo comenzó a ser mucho más fluido. También aprendí mejor la interfaz de VS Code, sus menús, la organización de los archivos y algunos atajos de teclado.
 
-## 📊 Dataset Utilizado
-Para este proyecto, trabajaremos con el dataset **"Data Science for Good: Kiva Crowdfunding"** que contiene información sobre préstamos de microfinanciación de Kiva, una organización sin fines de lucro.
+---
 
-- **Dataset principal**: [Descargar dataset Kiva](https://drive.google.com/file/d/1hY7KOuXNyY7WPw9cICXqrxmT8iRytmJk/view?usp=sharing)
-- **Información detallada del dataset**: [Kaggle - Kiva Crowdfunding](https://www.kaggle.com/datasets/kiva/data-science-for-good-kiva-crowdfunding)
-- **Organización**: [Kiva.org](https://www.kiva.org/)
-  
-## 🧰 Tecnologías y librerías
+Al comenzar con el ejercicio fui escribiendo el código paso a paso para entender qué hacía cada instrucción. Utilicé la IA de forma moderada y educativa, principalmente para resolver dudas, entender errores y recibir explicaciones cortas, sin saltarme pasos ni sustituir mi propio proceso de aprendizaje. Al principio trabajaba con líneas y bloques pequeños. Después de repetir y practicar muchas veces, fui comprendiendo mejor las instrucciones y pude trabajar progresivamente.
 
-- **Python** (notebook Jupyter o Google Colab)
-- **Librerías:** pandas, numpy, matplotlib / seaborn (opcional para exploración), pyarrow (si se exporta Parquet)
-- **Control de versiones:** git (repositorio), README.md
+---
 
-### ⚠️ Nota sobre la elección del dataset
-**Puedes utilizar cualquier dataset de tu interés** obtenido de otras fuentes de internet como Kaggle, data.gov, UCI Machine Learning Repository, o cualquier otra fuente de datos pública que sea de tu interés personal o profesional.
+### 🔎 Exploración inicial de los datos
 
-## 📦 Condiciones de entrega
+Primero comprobé la estructura y el contenido del dataset utilizando instrucciones como:
 
-El proyecto es **Individual**.
+```python
+df.shape
+df.head()
+df.info()
+df.describe()
+df.columns.tolist()
 
-1. Será necesario entregar un **Notebook** (.ipynb) bien organizado y con comentarios explicativos.
-2. Será necesario definir una línea de código donde se exporte el dataset en formato CSV o Parquet.
-3. Será necesario entregar un **README** con:
-   - Pasos ejecutados
-   - Cómo ejecutar el notebook
-   - Resumen de decisiones de limpieza
-4. **Repositorio** con todo lo anterior menos el dataset sea el final o el inicial (siguiendo las buenas prácticas).
+El dataset tenía 42.308 registros y 20 columnas.
 
-## ⏳ Plazo de Entrega
+🧹 Comprobación y limpieza
 
-- 1 semana
+Después comprobé los valores nulos y los duplicados mediante:
 
-## 🛠️ Tecnologías a usar
+df.isnull().sum()
+df.duplicated().sum()
+df["id"].duplicated().sum()
 
-- Google Colab
-- Github
+No encontré valores nulos ni duplicados, por lo que no fue necesario sustituir ni eliminar registros por estos motivos.
 
-## 🧭 Estructura recomendada del Notebook
+Mi criterio durante la limpieza fue no modificar los datos simplemente porque parecieran diferentes. Primero comprobé si existía realmente un problema y después decidí qué transformación era necesaria.
 
-1. **Importar datos** (mostrar primeros registros)
-2. **Análisis exploratorio rápido** (shape, tipos, resumen estadístico)
-3. **Diagnóstico de problemas** (missing, outliers, duplicados, formatos)
-4. **Transformaciones y limpieza** (paso a paso, con celdas y comentarios)
-5. **Validación post-limpieza** (checks, counts, sample)
-6. **Exportar dataset limpio** y notas finales
+##🔧 Transformaciones realizadas
 
-## ✅ Checklist de limpieza (tareas y decisiones típicas)
+Sí realicé diferentes modificaciones: limpié espacios innecesarios, normalicé determinados textos, convertí las fechas al formato datetime, ajusté algunos tipos de datos y creé nuevas variables para facilitar posteriores análisis.
 
-- [ ] Revisar columnas, tipos de datos y convertir columnas de fecha a datetime
-- [ ] Detectar y eliminar duplicados (documentar criterio)
-- [ ] Analizar y tratar valores faltantes: imputación simple, eliminación o marca explícita
-- [ ] Normalizar textos (país, moneda, categorías): trim, lower, mapeos
-- [ ] Corregir formatos numéricos (coma/punto, tipos numéricos)
-- [ ] Detectar y gestionar outliers razonables (documentar por qué se quitan o conservan)
-- [ ] Crear columnas derivadas útiles (ej.: año, mes, duración, ratio)
-- [ ] Codificar variables categóricas si procede (labels / one-hot solo si es necesario)
-- [ ] Guardar snapshot del raw original y del dataset final
-- [ ] Añadir pruebas sencillas: conteos esperados, no-null en campos clave, unicidad
+Para ello utilicé instrucciones como:
 
-## 📈 Buenas prácticas y criterios de calidad
+df_clean[col] = df_clean[col].str.strip()
 
-- **Reproducibilidad:** todo cambio debe poder ejecutarse de nuevo desde el notebook
-- **Trazabilidad:** explicar por qué se tomó cada decisión (notas/markdown)
-- **Minimalismo en pérdida de información:** eliminar filas solo si hay justificación
-- **Entregable usable:** dataset final con tipos correctos y documentación mínima
+df_clean[col] = df_clean[col].str.lower()
 
-## 🧪 Criterios de evaluación
+df_clean[col] = pd.to_datetime(df_clean[col])
+📊 Nuevas variables
 
-- Configurar y automatizar su entorno de trabajo.
-- Gestionar equipos técnicos
-- Evaluar Conjuntos de datos
+También creé variables como el año y mes de publicación y el porcentaje de financiación mediante:
 
+posted_year
+posted_month
+funding_ratio
+
+Después volví a comprobar los datos para validar que las transformaciones se habían aplicado correctamente.
+
+🧠 Lo que aprendí
+
+Este proyecto me ayudó a comprender mejor que la limpieza de datos no consiste simplemente en borrar o sustituir información. Aprendí a comprobar primero, decidir después y validar al final.
+
+También mejoré mi manejo de Python y pandas y comprendí mejor el funcionamiento de VS Code, su interfaz, menús, archivos y atajos de teclado. Al principio necesitaba mucha explicación para cada paso. Con la práctica fui necesitando menos ayuda y pude trabajar con bloques de código más largos y entender mejor lo que estaba haciendo.
+
+🚀 GitHub y resultado final
+
+La parte de guardar y subir el proyecto a GitHub fue mucho más sencilla porque ya la habíamos practicado anteriormente. Una vez subido el proyecto, modifiqué también el README para reflejar de una forma más natural el trabajo que realmente había realizado y mi proceso de aprendizaje.
+
+🎨 Una última parte del aprendizaje
+
+Al final también terminé divirtiéndome *“cacharreando”* con Markdown, probando diferentes formas de estructurar y decorar el texto.
+
+*Lo más importante de este proyecto no fue solamente trabajar con la base de datos, sino ir ganando poco a poco comprensión, práctica y autonomía en el trabajo con Python y las herramientas del proyecto.*
