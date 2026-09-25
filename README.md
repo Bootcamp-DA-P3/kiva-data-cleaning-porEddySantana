@@ -63,7 +63,7 @@ funding_ratio
 
 Después volví a comprobar los datos para validar que las transformaciones se habían aplicado correctamente.
 
-🧠 Lo que aprendí
+```🧠 Lo que aprendí
 
 Este proyecto me ayudó a comprender mejor que la limpieza de datos no consiste simplemente en borrar o sustituir información. Aprendí a comprobar primero, decidir después y validar al final.
 
